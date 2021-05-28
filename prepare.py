@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 def telco_prep(df):
     
     '''
-    This function take in the df and preps if for exploration.
+    This function take in the df and preps it for exploration.
     Actions taken in this function include: checking for duplicates, setting the index to customer_id, dealing with any spaces and null values, encoding columns, feature engineering, and renaming and dropping columns.
     '''
     
