@@ -7,6 +7,11 @@ from sklearn.model_selection import train_test_split
 ##### TELCO PREP #####
 def telco_prep(df):
     
+    '''
+    This function take in the df and preps if for exploration.
+    Actions taken in this function include: checking for duplicates, setting the index to customer_id, dealing with any spaces and null values, encoding columns, feature engineering, and renaming and dropping columns.
+    '''
+    
     # drop any duplicates
     df.drop_duplicates(inplace=True)
     
@@ -40,6 +45,12 @@ def telco_prep(df):
     df.paperless_billing = df.paperless_billing.replace({'No': 0, 'Yes': 1})
     df.churn = df.churn.replace({'No': 0, 'Yes': 1})
     
+    # combine 'partner' + 'dependents' into 'family' 
+    # new values(0 = none, 1 = partner OR dependent, 2 = both)
+    df['family'] = df.partner + df.dependents
+    
+    # drop 'phone_service' and encode 'multiple_lines'
+    df = df.drop(columns='phone_service')
     # encode values in 'multiple_lines'
     # new values (0 = no phone service, 1 = single line, 2 = multiple lines)
     df.multiple_lines = df.multiple_lines.replace({'No phone service': 0, 'No': 1, 'Yes': 2})
@@ -85,7 +96,7 @@ def telco_prep(df):
     df.internet_service_type = df.internet_service_type.replace({'None': 0, 'DSL': 1, 'Fiber optic': 2})
     
     # drop columns
-    df = df.drop(columns=['gender', 'phone_service', 'online_security', 'online_backup', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'payment_type', 'contract_type_id', 'internet_service_type_id'])
+    df = df.drop(columns=['gender', 'partner', 'dependents', 'online_security', 'online_backup', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'payment_type', 'contract_type_id', 'internet_service_type_id'])
     
     return df
 
@@ -96,6 +107,7 @@ def telco_split(df):
     '''
     This function takes in the telco data acquired by get_telco_data,
     performs a split and stratifies on churn column.
+    (test = 20%, validate = 24%, train = 56% of the original dataset)
     Returns train, validate, and test dfs.
     '''
     train_validate, test = train_test_split(df, test_size=0.2, 
