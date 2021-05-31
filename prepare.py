@@ -88,7 +88,7 @@ def telco_prep(df):
     df = df.rename(columns={'payment_type_id': 'auto_pay'})
     
     # convert 'contract_type'
-    # new values(0 = 'Month-to-month', 1 = 'One year', 2 = 'Two year')
+    # new values(0 = no phone service, 1 = single line, 2 = multiple lines)
     df.contract_type = df.contract_type.replace({'Month-to-month': 0, 'One year': 1, 'Two year': 2})
     
     # convert 'internet_service_type'
