@@ -26,7 +26,7 @@
 #### Project Deliverables
 > - A Jupyter Final Report Notebook 
 > - A README.md file
-> - All necessary modules to make my project reproducible
+> - All necessary modules to make project reproducible
 > - A csv file of customer_id, probability of churn, and predictions.
 
 #### Project Context
@@ -35,7 +35,7 @@
 
 #### Data Dictionary
 
-The Telco Churn database contains four tables. The tables were joined together into a single pandas DataFrame for this project.
+The telco database contains four tables. The tables were joined together into a single pandas DataFrame for this project.
 
 After preparing the data, the remaining features and values are listed below:
 
@@ -77,7 +77,7 @@ After preparing the data, the remaining features and values are listed below:
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
 > - Created 3 classification models - LogisticRegression, DecisionTree, and RandomForest - and tested them with a list of 6 features - 'auto_pay', 'tenure_months', 'paperless_billing', 'contract_type', 'internet_service_type', 'family' - each having at least 20% correlation.
-> - Each model predicted customer churn equally well, between 79-80%, using the listed features.
+> - Each model predicted customer churn equally well on the train dataset, between 79-80%, using the listed features.
 > - Chose the LogisticRegression model as the best model with a 80% accuracy rate for predicting my target value, churn. This model outperformed my baseline score of 73% accuracy, so it has value.
 > - Initial exploration and statistical testing revealed that the selected features produced well-fit models, and with more time exploring additional features and/or adjusting hyperparameters could improve the results.
 
@@ -93,7 +93,7 @@ After preparing the data, the remaining features and values are listed below:
 - clean and prepare the data, create a function(s) to automate the process, create a prepare.py file containing the function(s), import and utilize the automated processes in the final notebook
 - create visuals of variable distributions, create hypotheses, run statistical tests, reject or fail to reject null hypotheses, and document findings and takeaways
 - establish baseline predictions, create, fit and evaluate models on the train and validate datasets, document findings and takeaways
-- choose the best model to and evaluate on the test dataset, document conclusions, takeaways, and recommendations
+- choose the best model and evaluate on the test dataset, document conclusions, takeaways, and recommendations
 - create a predictions.csv with customer_id, probability of churn, and predictions
 
 ___
@@ -103,7 +103,6 @@ ___
 > - The function will return a pandas DataFrame.
 > - Import the get_telco_data function from the acquire.py module and use it to acquire the data in the Final Report Notebook.
 > - Complete some initial data summarization (`.info()`, `.describe()`, `.value_counts()`, ...).
-> - Plot distributions of individual variables.
 ___
 
 ##### Data Preparation
@@ -113,7 +112,8 @@ ___
     - Encode variables as needed.
     - Create any new features, if made for this project.
     - Split the data into train/validate/test.
-> - Import the prepare function from the prepare.py module and use it to prepare the data in the Final Report Notebook.
+> - Import the telco_prep function from the prepare.py module and use it to prepare the data in the Final Report Notebook.
+> - Import the telco_split function from the prepare.py module and use it to split the data into train, validate and test subsets in the Final Report Notebook.
 ___
 
 ##### Data Exploration and Analysis
